@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,14 +12,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('employers', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(User::class);
-            $table->string('image');
+            $table->foreignId('user_id')->primary()->constrained('users')->onDelete('cascade');
             $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('website_url')->nullable();
-            $table->string('location')->nullable();
             $table->enum('employer_type', ['company', 'individual', 'non-profit']); 
+            $table->string('location');
+            $table->string('website_url')->nullable();
+            $table->text('bio')->nullable();
             $table->timestamps();
         });
     }

@@ -1,0 +1,9 @@
+Tables
+
+user (pass, email, id, image)
+
+    employer
+
+    candidate
+
+    admin

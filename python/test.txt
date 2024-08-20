@@ -1,0 +1,233 @@
+"""
+Ashraf Mohamed Nosser 
+
+Ashrafnosser66@gmail.com  | Linked in | GitHub 
+
+ (+20) 01067512269/ (+966) 506851669 
+
+Objective 
+
+
+A software developer skilled in C#, Asp.net core, SQL server, Entity Framework and Angular looking 
+
+for an opportunity meet my skills. 
+
+
+Experience 
+
+
+July 2022-present  Nagwa solutions 
+
+Software developer , Responsible for : 
+
+• Designed and developed software systems using ASP.NET MVC 
+
+and Angular 
+
+• Worked closely with other developers, designers, Testers and 
+
+analysts to maintain and develop apps 
+
+. 
+
+
+
+Dec 2021-July 2022  Meem dev 
+
+Software developer , Responsible for : 
+
+• Designed and developed software systems using ASP.NET Core 
+
+MVC, Angular 
+
+
+
+April 2021- Dec 2021 Hits Solutions 
+
+Software developer , Responsible for : 
+
+• Designed and developed software systems using ASP.NET Core 
+
+SQL and Windows form 
+
+
+Education 
+
+
+
+Sep 2020-present  information technology institution (ITI) 
+
+9months Diploma , Professional web development (PD) track   
+
+Graduation Project : Wuzzufny Web Application  
+
+Web Application using .Net Core and Angular Framework 
+
+
+
+Sep 2016-Jun 2020  Faculty of Computers and information Kafr Elshiek university  
+
+IT Department , GPA: 3.5 / 4   
+
+\t
+Graduation project , Excellent degree 
+
+ Skin Cancer detection system  , Developing a website, Building APIs 
+
+for Mobile and website , depending on (CNN)
+
+
+Technical Skills: 
+
+▪ C# 
+
+▪ LINQ 
+
+▪ Entity frame work 
+
+▪ Windows form(C#) 
+
+▪ Design pattern 
+
+▪ Entity frame work Core 
+
+
+▪ Angular 
+
+▪ HTML/HTML5 
+
+▪ CSS/CSS3 
+
+▪ JavaScript 
+
+▪ Bootstrap 
+
+▪ Typescript 
+
+
+▪ Asp.net MVC 
+
+▪ Asp.net Core MVC 
+
+▪ Web APIs (Asp/core) 
+
+▪ SQL  
+
+▪ Git 
+
+▪ Agile 
+
+
+
+COURSES AND TRAINING: 
+
+▪ ITI, ITI summer training | Front End Web Development                    July 2019. 
+
+JavaScript, JQuery, HTML5&CSS3, Bootstrap, Angular, Final project 
+
+▪ Intel, Ideation Program.                                                                                     August 2019.  
+
+                      Entrepreneurship Training program provided by TIEC. 
+
+▪ TIEC, InnovEgypt | How to develop a final product for startup                      August 2019. 
+
+Entrepreneurship Training program provided by TIEC. 
+
+▪ Problem solving (ITI& Coach Academy)                                                 April 2021 
+
+         Course Content (Recursion, Complexity analysis, Bitmasks; STLs, Complete Search, 
+
+Sorting Algorithms ,Greedy; Binary Search & 2-Pointers, Graph Terminology & 
+
+Representation Graph, Traversal Algorithms, Shortest path algorithms (Dijkstra - 
+
+Bellman Ford – Floyd War shall)). 
+
+Projects 
+
+▪ Gamers8 Web Application                 Website link : Gamers8 
+
+          A global website for gaming and gamers, Done for Saudi E-sport federation  
+
+         Asp.net core 6, Restful APIs,OData,, Angular, SQL server, Entity framework core are the 
+
+technologies used to build this project. 
+
+▪ Wuzzufny Web Application                 GitHub link : Wuzzufny 
+
+         ITI graduation project, A website for Managing jobs for Companies and candidates  
+
+         Asp.net core, Restful APIs, Angular, SQL server, Entity framework are the technologies 
+
+         used to build this project. 
+
+▪ Pharmacy management system         GitHub link : Pharmacy Management System              
+
+         A Website for adding products with all related in formation, make invoices and save it on 
+
+database , HTML , CSS , JS, JQuery ,Bootstrap  and SQL Web are the technologies  used for build 
+
+this app  
+
+▪ Store management                                    GitHub link: Store Management system                                                                      
+ ▶
+
+A Desktop app used to manage a products, customers and consumers for a store, C#, 
+
+windows form, and Entity framework is the technologies used to build this app. 
+
+▪ Exam system                                                GitHub link: Exam system                                                                           
+ ▶
+
+A Database system for manage the process for exam answer and correction  
+
+▪ Secret Word Game                                   GitHub link: Secret word game                                                                              
+ ▶
+
+A C# Game depend on 2 Desktop Apps, threading and Client server communication.
+
+
+Interpersonal skills 
+
+
+
+▪ Problem Solving skills 
+
+▪ Leadership 
+
+▪ Presentation skills 
+
+▪ Self-learning 
+
+▪ Team Working 
+
+
+
+Volunteering work 
+
+
+
+IEEE Kafrelsheikh Student Branch “IEEE KSB” at KSU. 
+
+▪ Branch Former Chairman                                                                       May 2020.          
+
+Presenting Ramadan Career online sessions (sessions about technical and managerial topics)  
+
+▪ Head of technical team                                                                           March 2020. 
+
+Achieving IEEE KSB mobile app and website 
+
+▪ Member at marketing committee                                                          October 2019. 
+
+Responsible for travelling to the future Event marketing campaign 
+
+Personal information 
+
+
+▪ Address:  Cairo – Nasr City 
+
+▪ Military Services: Exempted 
+
+▪ Marital Status: Single  
+
+▪ Birth Date:   6/11/1997 

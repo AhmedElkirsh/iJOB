@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Employer;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('job_listings', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->foreignIdfor(Employer::class)->constrained()->onDelete('cascade'); 
-            $table->text('job_description');
-            $table->string('salary_range');
-            $table->string('work_hours');
-            $table->string('location');
+            $table->foreignId('employer_id')->constrained('users')->onDelete('cascade'); 
+            $table->string('position_title');
             $table->enum('employment_type', ['full-time', 'part-time', 'contract', 'freelance', 'internship']);
-            $table->date('application_deadline')->nullable();
-            $table->string('contact_email');
+            $table->enum('experience level', ['Junior','Senior','Expert']); // subject to change
+            $table->string('industry');
+            $table->text('job_description');
+            $table->string('location');
+            $table->enum('job_status',['not_approved','open','closed']);
+            $table->integer('salary'); // modify later
             $table->timestamps();
         });
     }

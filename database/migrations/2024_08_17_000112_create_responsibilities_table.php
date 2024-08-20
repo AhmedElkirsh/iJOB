@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Job;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,8 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resumes', function (Blueprint $table) {
+        Schema::create('responsibilities', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Job::class)->constrained()->onDelete('cascade');
+            $table->string('responsibility');
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resumes');
+        Schema::dropIfExists('responsibilities');
     }
 };

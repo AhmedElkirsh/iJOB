@@ -6,6 +6,7 @@ use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
 
@@ -26,6 +27,12 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = \Faker\Factory::create();
+        $imageUrl = $faker->imageUrl(800, 600, 'business', true); 
+        $imageContent = file_get_contents($imageUrl); 
+        $imagePath = 'public/user_images/' . uniqid() . '.jpg'; 
+        Storage::put($imagePath, $imageContent); 
+
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
@@ -34,7 +41,7 @@ class UserFactory extends Factory
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
             'remember_token' => Str::random(10),
-            'profile_photo_path' => null,
+            'profile_photo_path' => $imagePath,
             'current_team_id' => null,
         ];
     }
