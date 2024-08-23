@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('employers', function (Blueprint $table) {
-            $table->foreignId('user_id')->primary()->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->primary();
             $table->string('name');
             $table->enum('employer_type', ['company', 'individual', 'non-profit']); 
             $table->string('location');
@@ -20,8 +20,8 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->timestamps();
         });
+        
     }
-
     /**
      * Reverse the migrations.
      */
