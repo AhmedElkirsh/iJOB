@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('employers', function (Blueprint $table) {
             $table->foreignId('user_id')->primary()->constrained('users')->onDelete('cascade');
             $table->string('name');
-            $table->enum('employer_type', ['company', 'individual', 'non-profit']); 
+            $table->enum('employer_type', ['company', 'individual', 'non-profit']);
             $table->string('location');
             $table->string('website_url')->nullable();
             $table->text('bio')->nullable();

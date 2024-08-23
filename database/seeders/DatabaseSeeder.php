@@ -2,17 +2,21 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Employer;
+use App\Models\Job;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
+    public function run()
     {
-        User::factory(20)->create();
+        // $this->call(UserSeeder::class);
+
+        // // Then seed the employers
+        // $this->call(EmployerSeeder::class);
+
+        // // Finally, seed the job listings
+        // $this->call(JobSeeder::class);
     }
 }

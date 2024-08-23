@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('required_skills', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Skill::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Job::class)->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('job_listings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employer_id')->constrained('users')->onDelete('cascade'); 
+            $table->foreignId('employer_id')->constrained('users')->onDelete('cascade');
             $table->string('position_title');
             $table->enum('employment_type', ['full-time', 'part-time', 'contract', 'freelance', 'internship']);
             $table->enum('experience level', ['Junior','Senior','Expert']); // subject to change

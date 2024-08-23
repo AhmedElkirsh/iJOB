@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ResumeSkills extends Model
 {
     use HasFactory;
+    protected $table='resume_skills';
+    protected $fellible=[
+        'skill'
+    ];
 }
