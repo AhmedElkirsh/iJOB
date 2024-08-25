@@ -22,11 +22,11 @@
         <div class="mb-3">
             <label class="form-label">Employement Type</label>
             <div>
-                <input type="radio" name="employment_type" value="fullTime">
+                <input type="radio" name="employment_type" value="full-time">
                 <label>full time</label>
             </div>
             <div>
-                <input type="radio" name="employment_type" value="partTime">
+                <input type="radio" name="employment_type" value="part-time">
                 <label>part-time</label>
             </div>
             <div>

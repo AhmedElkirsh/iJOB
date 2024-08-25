@@ -2,6 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Application;
+use App\Models\Resume;
+use App\Models\ResumeEducation;
+use App\Models\ResumeExperience;
+use App\Models\ResumeProjects;
+use App\Models\ResumeSkills;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Employer;
@@ -18,5 +24,9 @@ class DatabaseSeeder extends Seeder
 
         // // Finally, seed the job listings
         // $this->call(JobSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(EmployerSeeder::class);
+        $this->call(JobSeeder::class);
+
     }
 }

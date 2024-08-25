@@ -16,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Resume::class)->constrained()->onDelete('cascade');
             $table->date('start_date');
-            $table->date('end_date')->nullable(); 
-            $table->string('organization'); 
+            $table->date('end_date')->nullable();
+            $table->string('organization');
             $table->string('grade')->nullable();
             $table->text('description');
             $table->timestamps();

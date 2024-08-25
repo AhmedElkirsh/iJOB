@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Notifications\NewJobPosted;
+use App\Models\User;
 use App\Models\Job;
 use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
@@ -31,23 +32,28 @@ class JobController extends Controller
      */
     public function store(StoreJobRequest $request)
     {
-        $validatedData = $request->validated();
+        // $validatedData = $request->validated();
+        // dd($request);
         $jobData = [
-            'position_title' => $validatedData['position_title'],
-            'employment_type' => $validatedData['employment_type'],
-            'experience_level' => $validatedData['experience_level'],
-            'industry' => $validatedData['industry'],
-            'job_description' => $validatedData['job_description'],
-            'location' => $validatedData['location'],
-            'job_status' => $validatedData['job_status'],
-            'salary' => $validatedData['salary'],
+            'position_title' => $request['position_title'],
+            'employment_type' => $request['employment_type'],
+            'experience_level' => $request['experience_level'],
+            'industry' => $request['industry'],
+            'job_description' => $request['job_description'],
+            'location' => $request['location'],
+            'job_status' => $request['job_status'],
+            'salary' => $request['salary'],
         ];
-        $responsibilityData = $validatedData['responsibility'];
-        $qualificationData = $validatedData['qualification'];
-        Job::create($jobData);
-        responsibility::create($responsibilityData);
-        Qualification::created($qualificationData);
-        return redirect('jobs.index')->with('success', 'Job created successfully!');
+        $responsibilityData = $request['responsibility'];
+        $qualificationData = $request['qualification'];
+        $job=Job::create($jobData);
+        $job=responsibility::create($responsibilityData);
+        $job=Qualification::create($qualificationData);
+        //send notification to users about last posted jobs
+        foreach (user::all() as $user) {
+            $user->notify(new NewJobPosted($job));
+        }
+        // return redirect('jobs.index')->with('success', 'Job created successfully!');
         // dd($request);
     }
 
@@ -56,7 +62,19 @@ class JobController extends Controller
      */
     public function show(Job $job) // Only pass the Job model
     {
-        return view('jobs.show', compact('job'));
+        //sharing job post via social media
+        if (!$job) {
+            abort(404, 'Job not found');
+        }
+        $shareButtons=\Share::page(
+            url('/jobs/' . $job->id),
+            'here is text'
+        )->facebook()
+        ->telegram()
+        ->linkedin()
+        ->whatsapp()
+        ->twitter();
+        return view('jobs.show', compact('job','shareButtons'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -98,6 +116,9 @@ class JobController extends Controller
         $job->delete();
         $responsibility->delete();
         $qualification->delete();
+        // foreach (user::all() as $user) {
+        //     $user->notify(new NewJobPosted($jobb));
+        // }
         return redirect ('jobs.index')->with('success','Deleted successfully!');
     }
 }

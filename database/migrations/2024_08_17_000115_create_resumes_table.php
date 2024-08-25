@@ -18,14 +18,14 @@ class CreateResumesTable extends Migration
             $table->id();
             // $table->string('resume_file_path');
             $table->foreignIdFor(Application::class)->constrained()->onDelete('cascade');
-            $table->string('full_name')->nullable();   
-            $table->string('email')->nullable();  
-            $table->string('phone')->nullable();  
+            $table->string('full_name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->string('address'); //maybe optimize?
             $table->enum('marital_status',['single','married']);
             $table->enum('military_status',['completed','exempted','unknown'])->nullable();
-            // $table->text('education'); 
-            // $table->text('experience'); 
+            // $table->text('education');
+            // $table->text('experience');
             // $table->string('projects');
             // $table->text('skills');
             $table->timestamps();

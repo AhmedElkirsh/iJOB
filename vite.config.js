@@ -1,14 +1,12 @@
 import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
+import laravel from 'vite-plugin-laravel';
 
 export default defineConfig({
     plugins: [
-        laravel({
-            input: [
-                'resources/css/app.css',
-                'resources/js/app.js',
-            ],
-            refresh: true,
-        }),
+        laravel(),
     ],
+    build: {
+        outDir: 'public/build',  // Ensure this matches your expected output directory
+        manifest: true,          // Ensure manifest is enabled
+    },
 });

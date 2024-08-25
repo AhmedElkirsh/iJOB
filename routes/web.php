@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\applicationController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\shareButtonController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResumeController;
 
@@ -30,4 +31,3 @@ Route::get('resumes/{id}', [ResumeController::class, 'show'])->name('resumes.sho
 // for me
 Route::resource('jobs',JobController::class);
 Route::resource('applications',applicationController::class);
-

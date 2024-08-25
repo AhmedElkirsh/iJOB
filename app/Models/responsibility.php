@@ -12,4 +12,5 @@ class responsibility extends Model
     protected $fillable = [
         'responsibility'
     ];
+
 }

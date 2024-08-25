@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('employer_id')->constrained('users')->onDelete('cascade');
             $table->string('position_title');
             $table->enum('employment_type', ['full-time', 'part-time', 'contract', 'freelance', 'internship']);
-            $table->enum('experience level', ['Junior','Senior','Expert']); // subject to change
+            $table->enum('experience_level', ['Junior','Senior','Expert']); // subject to change
             $table->string('industry');
             $table->text('job_description');
             $table->string('location');
