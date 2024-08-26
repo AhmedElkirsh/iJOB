@@ -152,12 +152,24 @@
                 <p class="alert alert-danger">{{$message}}
             @enderror
         <!--------------------------------------------------------------------->
-        {{-- <select class="form-select">
-            <option selected>select your skills</option>
-            @foreach ($skills as $skill)
-                <option value="{{$skill->id}}">{{$skill->skill}}</option>
-            @endforeach
-        </select> --}}
+        <select id="skillsSelect" name="skills">
+            <option value="">Select a skill</option>
+            <!-- Example options; replace these with dynamic data from your database -->
+            <option value="1">JavaScript</option>
+            <option value="2">Python</option>
+            <option value="3">Java</option>
+            <option value="4">PHP</option>
+        </select>
+
+        <!-- Container for displaying selected tags -->
+        <div id="tagsContainer" class="flex flex-wrap gap-2 mt-2">
+            <!-- Tags will be dynamically added here -->
+        </div>
+
+        <!-- Hidden input to store selected skill IDs -->
+        <div id="tagsContainer" class="flex flex-wrap gap-2 mt-2"></div>
+
+        <input type="hidden" id="skillsInput" name="skills_ids">
         <!--------------------------------------------------------------------->
             <h3>Projects</h3>
             <div class="mb-3">
@@ -197,26 +209,9 @@
             @enderror
            <!--------------------------------------------------------------------->
            <input type="hidden" value="review">
-           <select id="skillsSelect" name="skills">
-                <option value="">Select a skill</option>
-                <!-- Example options; replace these with dynamic data from your database -->
-                <option value="1">JavaScript</option>
-                <option value="2">Python</option>
-                <option value="3">Java</option>
-                <option value="4">PHP</option>
-            </select>
-
-        <!-- Container for displaying selected tags -->
-        <div id="tagsContainer" class="flex flex-wrap gap-2 mt-2">
-            <!-- Tags will be dynamically added here -->
-        </div>
-
-        <!-- Hidden input to store selected skill IDs -->
-        <div id="tagsContainer" class="flex flex-wrap gap-2 mt-2"></div>
-
-        <input type="hidden" id="skillsInput" name="skills_ids">
-        <button type="submit" class="btn btn-success">Add</button>
-    </form>
+            <!--------------------------------------------------------------------->
+            <button type="submit" class="btn btn-success">Add</button>
+        </form>
     <script>
     document.addEventListener("DOMContentLoaded", () => {
         const select = document.getElementById("skillsSelect");

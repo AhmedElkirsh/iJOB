@@ -60,17 +60,16 @@ class applicationController extends Controller
             'start_date'=>$request['project_start_date'],
             'end_date'=>$request['project_end_date'],
         ];
-        // Application::create($applicantData);
-        // $application->create($applicantData);
-        // ResumeEducation::create($educationData);
-        // ResumeExperience::create($experienceData);
-        // ResumeProjects::create($projectData);
+        Application::create($applicantData);
+        ResumeEducation::create($educationData);
+        ResumeExperience::create($experienceData);
+        ResumeProjects::create($projectData);
         // return redirect('jobs.index')->with('success', 'Job created successfully!');
 
         $skills_ids = $request['skills_ids'];
         $skills_ids = $request->input('skills_ids');
         $skills_array = explode(',', $skills_ids);
-        dd($request);
+        // dd($request);
     }
 
     /**

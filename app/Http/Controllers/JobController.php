@@ -49,12 +49,15 @@ class JobController extends Controller
         $job=Job::create($jobData);
         $job=responsibility::create($responsibilityData);
         $job=Qualification::create($qualificationData);
-        //send notification to users about last posted jobs
-        foreach (user::all() as $user) {
-            $user->notify(new NewJobPosted($job));
-        }
-        // return redirect('jobs.index')->with('success', 'Job created successfully!');
-        // dd($request);
+        // send notification to users about last posted jobs
+        // foreach (user::all() as $user) {
+        //     $user->notify(new NewJobPosted($job));
+        // }
+        return redirect('jobs.index')->with('success', 'Job created successfully!');
+        // $skills_ids = $request['skills_ids'];
+        // $skills_ids = $request->input('skills_ids');
+        // $skills_array = explode(',', $skills_ids);
+        // dd();
     }
 
     /**
