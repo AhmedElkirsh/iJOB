@@ -78,14 +78,14 @@ class JobController extends Controller
         if (!$job) {
             abort(404, 'Job not found');
         }
-        $shareButtons=\Share::page(
-            url('/jobs/' . $job->id),
-            'here is text'
-        )->facebook()
-        ->telegram()
-        ->linkedin()
-        ->whatsapp()
-        ->twitter();
+        // $shareButtons=\Share::page(
+        //     url('/jobs/' . $job->id),
+        //     'here is text'
+        // )->facebook()
+        // ->telegram()
+        // ->linkedin()
+        // ->whatsapp()
+        // ->twitter();
         return view('jobs.show', compact('job','shareButtons'));
     }
     /**
@@ -114,9 +114,9 @@ class JobController extends Controller
         ];
         $responsibilityData = $validatedData['responsibility'];
         $qualificationData = $validatedData['qualification'];
-        Job::update($jobData);
-        responsibility::update($responsibilityData);
-        Qualification::update($qualificationData);
+        // Job::update($jobData);
+        // responsibility::update($responsibilityData);
+        // Qualification::update($qualificationData);
         return redirect ('jobs.index')->with('success','updated successfully!');
     }
 

@@ -32,4 +32,8 @@ class Job extends Model
     {
         return $this->hasMany(Qualification::class,'job_id');
     }
+    public function applications()
+    {
+        return $this->hasMany(Application::class,'job_id');
+    }
 }

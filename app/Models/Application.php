@@ -15,4 +15,13 @@ class Application extends Model
         'application_type',
         'status',
     ];
+    public function job()
+    {
+        return $this->belongsTo(Job::class , 'job_id');
+    }
+
+    public function candidate()
+    {
+        return $this->belongsTo(Candidate::class , 'candidate_id');
+    }
 }

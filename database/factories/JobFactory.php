@@ -4,8 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Employer;
 use App\Models\Job;
-use App\Models\Employer;
-use App\Models\Job;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class JobFactory extends Factory
@@ -13,17 +11,7 @@ class JobFactory extends Factory
     protected $model = Job::class;
 
     public function definition()
-    protected $model = Job::class;
-
-    public function definition()
     {
-        // Fetch a random existing employer
-        $employer = Employer::inRandomOrder()->first();
-
-        if (!$employer) {
-            throw new \Exception("No employers found. Please seed the employers table first.");
-        }
-
         // Fetch a random existing employer
         $employer = Employer::inRandomOrder()->first();
 

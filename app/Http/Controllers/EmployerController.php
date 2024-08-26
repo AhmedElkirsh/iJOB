@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employer;
+use App\Models\Application;
+use Illuminate\Http\Request;
+
 use App\Http\Requests\StoreEmployerRequest;
 use App\Http\Requests\UpdateEmployerRequest;
 
@@ -63,4 +66,42 @@ class EmployerController extends Controller
     {
         //
     }
+
+    public function showApplications(Request $request, $user_id)
+    {
+       
+        $employer = Employer::find($user_id);
+
+        if (!$employer) {
+            return redirect()->back()->with('error', 'Employer not found.');
+        }
+
+        
+        $jobs = $employer->jobs;
+
+       
+        $selectedJobId = $request->input('job_id');
+
+        
+        $applications = [];
+
+        if ($selectedJobId) {
+            
+            $selectedJob = $jobs->find($selectedJobId);
+
+            if ($selectedJob) {
+                
+                $applications = $selectedJob->applications;
+            }
+        }
+
+
+        return view('employer.applications', [
+            'jobs' => $jobs,
+            'employer' => $employer,
+            'applications' => $applications,
+            'selectedJobId' => $selectedJobId,
+        ]);
+    }
+    
 }

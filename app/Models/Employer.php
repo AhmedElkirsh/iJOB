@@ -9,6 +9,8 @@ class Employer extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'user_id';
+
     protected $fillable = [
         'user_id',
         'name',
@@ -25,6 +27,6 @@ class Employer extends Model
 
     public function jobs()
     {
-        return $this->hasMany(Job::class, 'employer_id');
+        return $this->hasMany(Job::class, 'employer_id', 'user_id');
     }
 }
