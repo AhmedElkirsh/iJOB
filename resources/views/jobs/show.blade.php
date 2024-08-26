@@ -25,9 +25,6 @@
             margin: 3px;
             background-color: black
         }
-
-
-
     </style>
 </head>
 <body>

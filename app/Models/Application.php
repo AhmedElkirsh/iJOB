@@ -7,15 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Application extends Model
 {
-    protected $table='resumes';
     use HasFactory;
-    protected $fillable=
-    [
-    'full_name',
-    'email',
-    'phone',
-    'address',
-    'marital_status',
-    'military_status'
+    protected $fillable = [
+        'job_id',  // assuming 'job_id' is the foreign key
+        'candidate_id',
+        'resume_file_path',
+        'application_type',
+        'status',
     ];
 }

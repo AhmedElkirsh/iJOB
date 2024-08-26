@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\RequiredSkill;
 use App\Notifications\NewJobPosted;
 use App\Models\User;
 use App\Models\Job;
@@ -43,17 +44,25 @@ class JobController extends Controller
             'location' => $request['location'],
             'job_status' => $request['job_status'],
             'salary' => $request['salary'],
+            'employer_id'=>$request['employer_id']
         ];
-        $responsibilityData = $request['responsibility'];
+        $responsibilityData=[
+            'responsibility'=>$request['responsibility']
+        ];
+        responsibility::create($responsibilityData);
+        $qualificationData=[
+            'qualification'=>$request['qualification']
+        ];
+        Qualification::create($qualificationData);
         $qualificationData = $request['qualification'];
-        $job=Job::create($jobData);
-        $job=responsibility::create($responsibilityData);
-        $job=Qualification::create($qualificationData);
+        Job::create($jobData);
+        // $job=responsibility::create($responsibilityData);
+        // $job=Qualification::create($qualificationData);
         // send notification to users about last posted jobs
         // foreach (user::all() as $user) {
         //     $user->notify(new NewJobPosted($job));
         // }
-        return redirect('jobs.index')->with('success', 'Job created successfully!');
+        // return redirect('jobs.index')->with('success', 'Job created successfully!');
         // $skills_ids = $request['skills_ids'];
         // $skills_ids = $request->input('skills_ids');
         // $skills_array = explode(',', $skills_ids);

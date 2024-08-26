@@ -13,16 +13,14 @@ class Resume extends Model
      * The attributes that are mass assignable.
      *
      * @var array
-     */
-    protected $fillable = [
-        'file_path',
-        'extracted_text',
-        'name',
+     */  protected $fillable = [
+        'application_id',
+        'full_name',
         'email',
         'phone',
-        'education',
-        'experience',
-        'skills',
+        'address',
+        'marital_status',
+        'military_status',
     ];
 
     /**

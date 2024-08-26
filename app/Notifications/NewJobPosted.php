@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\Job;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -10,13 +11,14 @@ use Illuminate\Notifications\Notification;
 class NewJobPosted extends Notification
 {
     use Queueable;
+    protected $job;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(Job $job)
     {
-        //
+        $this->job = $job;
     }
 
     /**
@@ -35,9 +37,12 @@ class NewJobPosted extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        ->subject('New Job Posted: ' . $this->job->position_title)
+        ->line('A new job has been posted.')
+        ->line('Job Title: ' . $this->job->position_title)
+        ->line('Job Description: ' . $this->job->job_description)
+        ->action('View Job', url('/jobs/' . $this->job->id))
+        ->line('Thank you for using our application!');
     }
 
     /**
