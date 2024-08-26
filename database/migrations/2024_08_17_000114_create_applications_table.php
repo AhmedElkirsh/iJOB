@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignIdFor(Job::class)->constrained()->onDelete('cascade');
             $table->foreignId('candidate')->constrained('users')->onDelete('cascade');
             /// check for the 2 options and null situation
+            $table->foreignId('candidate_id')->constrained('users')->onDelete('cascade');
             $table->string('resume_file_path')->nullable();
-            $table->string('cover_letter_file_path')->nullable();
             $table->enum('application_type',['pdf','form']);
             $table->enum('status',['active','awaiting_review','reiviewed','contacted']);
             $table->timestamps();

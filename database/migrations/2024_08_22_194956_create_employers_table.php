@@ -20,8 +20,8 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->timestamps();
         });
+        
     }
-
     /**
      * Reverse the migrations.
      */

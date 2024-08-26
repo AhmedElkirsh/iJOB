@@ -2,17 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\Employer;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Employer;
 
 class EmployerSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
-        Employer::factory()->count(10)->create();
+        //
     }
 }
