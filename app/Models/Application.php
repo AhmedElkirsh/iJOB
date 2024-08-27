@@ -19,9 +19,18 @@ class Application extends Model
     {
         return $this->belongsTo(Job::class , 'job_id');
     }
-
+ 
+    public function user()
+    {
+        return $this->belongsTo(User::class ,'candidate_id' );
+    }
     public function candidate()
     {
         return $this->belongsTo(Candidate::class , 'candidate_id');
+    }
+
+    public function resume()
+    {
+        return $this->belongsTo(Resume::class , 'application_id');
     }
 }

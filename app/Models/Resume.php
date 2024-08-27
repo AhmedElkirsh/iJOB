@@ -22,11 +22,11 @@ class Resume extends Model
         'marital_status',
         'military_status',
     ];
+    public function application()
+    {
+        return $this->belongsTo(Application::class , 'application_id');
+    }
 
-    /**
-     * Set the education attribute.
-     * Converts an array to a comma-separated string.
-     */
     public function setEducationAttribute($value)
     {
         $this->attributes['education'] = is_array($value) ? implode(', ', $value) : $value;

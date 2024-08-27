@@ -75,9 +75,16 @@ class applicationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function view( $id)
     {
-        //
+        $application = Application::findOrFail($id);
+
+
+        // Application::where('id', $id)->update(['status' => 'reviewed']);
+        $application->status = 'reiviewed';
+        $application->save();
+    
+        return view('applications.view', compact('application'));
     }
 
     /**
