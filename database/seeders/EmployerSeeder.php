@@ -10,6 +10,6 @@ class EmployerSeeder extends Seeder
 {
     public function run()
     {
-        //
+        Employer::factory()->count(10)->create();
     }
 }

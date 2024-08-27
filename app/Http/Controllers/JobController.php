@@ -9,6 +9,7 @@ use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
 use App\Models\Qualification;
 use App\Models\responsibility;
+use Request;
 class JobController extends Controller
 {
     /**
@@ -33,9 +34,9 @@ class JobController extends Controller
      */
     public function store(StoreJobRequest $request)
     {
-        // $validatedData = $request->validated();
         // dd($request);
-        $jobData = [
+        // Create the job
+        $job = Job::create([
             'position_title' => $request['position_title'],
             'employment_type' => $request['employment_type'],
             'experience_level' => $request['experience_level'],
@@ -44,30 +45,76 @@ class JobController extends Controller
             'location' => $request['location'],
             'job_status' => $request['job_status'],
             'salary' => $request['salary'],
-            'employer_id'=>$request['employer_id']
-        ];
-        $responsibilityData=[
-            'responsibility'=>$request['responsibility']
-        ];
-        responsibility::create($responsibilityData);
-        $qualificationData=[
-            'qualification'=>$request['qualification']
-        ];
-        Qualification::create($qualificationData);
-        $qualificationData = $request['qualification'];
-        Job::create($jobData);
+            'employer_id' => $request['employer_id'],
+        ]);
+
+        // if ($job) {
+        //     // Create responsibilities
+        //     if (!empty($request['responsibilities'])) {
+        //         foreach ($request['responsibilities'] as $responsibility) {
+        //             Responsibility::create([
+        //                 'job_id' => $job->id,
+        //                 'responsibility' => $responsibility,
+        //             ]);
+        //         }
+        //     }
+        // } else {
+        //     return redirect()->back()->with('error', 'Failed to create job.');
+        // }
+        notify()->success('Laravel Notify is awesome!');
+
+        return redirect()->route('jobs.index')->with('success', 'Job created successfully!');
+    }
+
+        //*******************************************************************88 */
+        // // $validatedData = $request->validated();
+        // // dd($request);
+        // $jobData = [
+        //     'position_title' => $request['position_title'],
+        //     'employment_type' => $request['employment_type'],
+        //     'experience_level' => $request['experience_level'],
+        //     'industry' => $request['industry'],
+        //     'job_description' => $request['job_description'],
+        //     'location' => $request['location'],
+        //     'job_status' => $request['job_status'],
+        //     'salary' => $request['salary'],
+        //     'employer_id'=>$request['employer_id']
+        // ];
+        // $job=Job::create($jobData);
+        // // dd($job->id);
+        // // $responsibilityData=[
+        // //     'job_id'=>$job->id,
+        // //     'responsibility'=>$request['responsibilities']
+        // // ];
+        //         // Responsibility::create([
+        //         //     'job_id' => $job->id,
+        //         //     'responsibility' => $request['responsibility'],
+        //         // ]);
+        // // dd($responsibilityData);
+
+        // if (!empty($validatedData['responsibilities'])) {
+        //     foreach ($request['responsibilities'] as $responsibility) {
+        //         Responsibility::create([
+        //             'job_id' => $job->id,
+        //             'responsibility' => $responsibility,
+        //         ]);
+        //     }
+        // }
+        // $qualificationData=[
+        //     'qualification'=>$request['qualification']
+        // ];
+        // Qualification::create($qualificationData);
+        // $qualificationData = $request['qualification'];
         // $job=responsibility::create($responsibilityData);
         // $job=Qualification::create($qualificationData);
         // send notification to users about last posted jobs
-        // foreach (user::all() as $user) {
-        //     $user->notify(new NewJobPosted($job));
-        // }
-        // return redirect('jobs.index')->with('success', 'Job created successfully!');
+
+        // return redirect()->route('jobs.index')->with('success', 'Job created successfully!');
         // $skills_ids = $request['skills_ids'];
         // $skills_ids = $request->input('skills_ids');
         // $skills_array = explode(',', $skills_ids);
         // dd();
-    }
+
 
     /**
      * Display the specified resource.
@@ -99,25 +146,25 @@ class JobController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateJobRequest $request)
+    public function update(UpdateJobRequest $request,Job $job)
     {
-        $validatedData = $request->validated();
+        dd($request);
         $jobData = [
-            'position_title' => $validatedData['position_title'],
-            'employment_type' => $validatedData['employment_type'],
-            'experience_level' => $validatedData['experience_level'],
-            'industry' => $validatedData['industry'],
-            'job_description' => $validatedData['job_description'],
-            'location' => $validatedData['location'],
-            'job_status' => $validatedData['job_status'],
-            'salary' => $validatedData['salary'],
+            'position_title' => $request['position_title'],
+            'employment_type' => $request['employment_type'],
+            'experience_level' => $request['experience_level'],
+            'industry' => $request['industry'],
+            'job_description' => $request['job_description'],
+            'location' => $request['location'],
+            'job_status' => $request['job_status'],
+            'salary' => $request['salary'],
         ];
-        $responsibilityData = $validatedData['responsibility'];
-        $qualificationData = $validatedData['qualification'];
-        Job::update($jobData);
-        responsibility::update($responsibilityData);
-        Qualification::update($qualificationData);
-        return redirect ('jobs.index')->with('success','updated successfully!');
+        // $responsibilityData = $request['responsibility'];
+        // $qualificationData = $request['qualification'];
+        $job->update($jobData);
+        // responsibility::update($responsibilityData);
+        // Qualification::update($qualificationData);
+        return redirect()->route('jobs.index')->with('success', 'Job updated successfully!');
     }
 
     /**
@@ -131,6 +178,6 @@ class JobController extends Controller
         // foreach (user::all() as $user) {
         //     $user->notify(new NewJobPosted($jobb));
         // }
-        return redirect ('jobs.index')->with('success','Deleted successfully!');
+        return redirect()->route('jobs.index')->with('success', 'Job deleted successfully!');
     }
 }

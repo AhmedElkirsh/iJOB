@@ -4,8 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Employer;
 use App\Models\User;
-use App\Models\Employer;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EmployerFactory extends Factory
@@ -31,14 +29,6 @@ class EmployerFactory extends Factory
         self::$usedUserIds[] = $employerUser->id;
 
         return [
-            'user_id' => $employerUser->id, // Use the existing user's ID as the primary key
-            'name' => $employerUser->name,
-            'employer_type' => $this->faker->randomElement(['company', 'individual', 'non-profit']),
-            'location' => $this->faker->city . ', ' . $this->faker->state,
-            'website_url' => $this->faker->url,
-            'bio' => $this->faker->paragraph,
-            'created_at' => now(),
-            'updated_at' => now(),
             'user_id' => $employerUser->id, // Use the existing user's ID as the primary key
             'name' => $employerUser->name,
             'employer_type' => $this->faker->randomElement(['company', 'individual', 'non-profit']),

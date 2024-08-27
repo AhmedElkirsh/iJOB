@@ -31,7 +31,8 @@ class StoreJobRequest extends FormRequest
                 'location'=>'required',
                 'job_status'=>'required',
                 'salary'=>'required|integer|min:0',
-                'responsibility'=>'string | required',
+                'responsibilities' => 'required|array',
+                'responsibilities.*' => 'string|max:255',
                 'qualification'=>'string | required'
             ],[
                 'position_title.required'=>'Title is required',
@@ -45,8 +46,8 @@ class StoreJobRequest extends FormRequest
                 'job_status.required'=>'job status is required',
                 'salary.integer'=>'job salary must be number',
                 'salary.min:0'=>'Invalid value',
-                'responsibility.string'=>'This field must be text',
-                'responsibility.required'=>'This field is required',
+                'responsibilities.array'=>'This field must be array',
+                'responsibilities.required'=>'This field is required',
                 'qualification.string'=>'This field must be text',
                 'qualification.required'=>'This field is required'
             ])

@@ -209,7 +209,9 @@
             @enderror
            <!--------------------------------------------------------------------->
            <input type="hidden" value="review">
-            <!--------------------------------------------------------------------->
+           {{-- <input type="hidden" name="job_id" value="{{$job->id}}"> <!-- Ensure this value is correctly set or dynamically generated --> --}}
+           <input type="hidden" name="candidate_id" value="{{ Auth::id() }}">
+           <!--------------------------------------------------------------------->
             <button type="submit" class="btn btn-success">Add</button>
         </form>
     <script>

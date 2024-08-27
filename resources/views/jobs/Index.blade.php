@@ -36,7 +36,7 @@
             <td>{{$job->salary}}</td>
             <td>
                 <a href="/jobs/{{$job->id}}"><button class="btn btn-info">view</button></a>
-                <a href="/jobs/{{$job->id}}"><button class="btn btn-primary">edit</button></a>
+                <a href="/jobs/{{$job->id}}/edit"><button class="btn btn-primary">edit</button></a>
                 <form action="/jobs/{{$job->id}}" method="POST">
                     @csrf
                     @method('DELETE')

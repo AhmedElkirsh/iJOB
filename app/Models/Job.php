@@ -24,9 +24,10 @@ class Job extends Model
     {
         return $this->belongsTo(Employer::class, 'employer_id');
     }
+
     public function responsibilities()
     {
-        return $this->hasMany(responsibility::class,'job_id');
+        return $this->hasMany(Responsibility::class, 'job_id');
     }
     public function qualifications()
     {

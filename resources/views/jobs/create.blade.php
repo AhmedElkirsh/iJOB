@@ -83,9 +83,12 @@
         <!--------------------------------------------------------------------->
         <div class="mb-3">
             <label for="responsibilities" class="form-label">Responsibilities</label>
-            <input type="text" class="form-control" id="responsibilities" placeholder="responsibilities" name="responsibility">
+            <div id="responsibility-fields">
+                <input type="text" class="form-control" name="responsibilities[]" placeholder="Enter responsibility">
+            </div>
+            <button type="button" onclick="addResponsibilityField()">Add Another Responsibility</button>
         </div>
-        @error('responsibility')
+        @error('responsibilities')
             <p class="alert alert-danger">{{$message}}</p>
         @enderror
         <!--------------------------------------------------------------------->
@@ -97,13 +100,6 @@
             <p class="alert alert-danger">{{$message}}</p>
         @enderror
         <!--------------------------------------------------------------------->
-        {{-- <div class="mb-3">
-            <label for="requiredSkills" class="form-label">Required Skills</label>
-            <input type="text" class="form-control" id="requiredSkills" placeholder="qualifications" name="qualification">
-        </div>
-        @error('qualification')
-            <p class="alert alert-danger">{{$message}}</p>
-        @enderror --}}
         <select id="skillsSelect" name="required_skills">
             <option value="">Select required skill</option>
             <!-- Example options; replace these with dynamic data from your database -->
@@ -121,7 +117,7 @@
         <!-- Hidden input to store selected skill IDs -->
         <div id="tagsContainer" class="flex flex-wrap gap-2 mt-2"></div>
 
-        <input type="hidden" id="skillsInput" name="skills_ids">
+        <input type="hidden" id="skillsInput" name="required_skills">
         <!--------------------------------------------------------------------->
         <div class="mb-3">
             <label for="location" class="form-label">Location</label>
@@ -159,7 +155,7 @@
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-           document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", () => {
         const select = document.getElementById("skillsSelect");
         const tagsContainer = document.getElementById("tagsContainer");
         const skillsInput = document.getElementById("skillsInput");
@@ -219,7 +215,17 @@
         }
     });
     </script>
-
+<script>
+    function addResponsibilityField() {
+        const container = document.getElementById('responsibility-fields');
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'form-control';
+        input.name = 'responsibilities[]'; // This must be an array
+        input.placeholder = 'Enter another responsibility';
+        container.appendChild(input);
+    }
+</script>
     </body>
 </html>
 {{-- <label for="responsibilitiesInput" class="form-label">Responsibilities</label>

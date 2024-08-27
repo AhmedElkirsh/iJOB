@@ -14,7 +14,7 @@
         @method('PUT')
         <div class="mb-3">
             <label for="postionTitle" class="form-label">Postion Title</label>
-            <input type="text" class="form-control" id="postionTitle" placeholder="Postion Title" name="position_title" value="{{job->position_title}}">
+            <input type="text" class="form-control" id="postionTitle" placeholder="Postion Title" name="position_title" value="{{$job->position_title}}">
         </div>
         @error('position_title')
             <p class="alert alert-danger">{{$message}}</p>
