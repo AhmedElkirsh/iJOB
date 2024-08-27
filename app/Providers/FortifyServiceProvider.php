@@ -1,4 +1,5 @@
 <?php
+// app/Providers/FortifyServiceProvider.php
 
 namespace App\Providers;
 
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -33,8 +36,32 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
+        // Custom login response
+        Fortify::authenticateUsing(function (Request $request) {
+            $credentials = $request->only('email', 'password');
+            $user = Auth::attempt($credentials);
+
+            /*
+            you can redirect user after login from here
+            */
+            
+            if ($user) {
+                $user = Auth::user();
+                switch ($user->user_type) {
+                    case 'admin':
+                        return Redirect::route('admin.dashboard');
+                    case 'candidate':
+                        return Redirect::route('candidate.dashboard');
+                    case 'employer':
+                        return Redirect::route('employer.dashboard');
+                    default:
+                        return Redirect::to('/');
+                }
+            }
+        });
+
         RateLimiter::for('login', function (Request $request) {
-            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
+            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())) . '|' . $request->ip());
 
             return Limit::perMinute(5)->by($throttleKey);
         });

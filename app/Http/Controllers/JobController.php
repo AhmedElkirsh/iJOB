@@ -17,7 +17,7 @@ class JobController extends Controller
      */
     public function index(Job $job)
     {
-        $jobs=$job->all();
+        $jobs=$job->paginate(3);
         return view('jobs.index',compact('jobs'));
     }
 
@@ -61,7 +61,7 @@ class JobController extends Controller
         // } else {
         //     return redirect()->back()->with('error', 'Failed to create job.');
         // }
-        notify()->success('Laravel Notify is awesome!');
+        // notify()->success('Laravel Notify is awesome!');
 
         return redirect()->route('jobs.index')->with('success', 'Job created successfully!');
     }
@@ -148,7 +148,6 @@ class JobController extends Controller
      */
     public function update(UpdateJobRequest $request,Job $job)
     {
-        dd($request);
         $jobData = [
             'position_title' => $request['position_title'],
             'employment_type' => $request['employment_type'],
