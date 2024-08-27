@@ -5,15 +5,17 @@ namespace App\Actions\Fortify;
 use App\Models\User;
 use App\Models\Candidate;
 use App\Models\Employer;
+use App\Models\Industry;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
+use Illuminate\Support\Facades\DB;
 
 class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
-    
+
     /**
      * Validate and create a newly registered user.
      *
@@ -21,6 +23,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
+
         // Validate common fields
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
@@ -36,19 +39,26 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
-        
+
         // Based on user type, create either a Candidate or an Employer
         if ($input['user_type'] === 'candidate') {
             Validator::make($input, [
-                'industry' => ['required', 'string', 'max:255'],
+                'industries.*' => ['required', 'exists:industries,id'], // Ensure each industry ID exists in the industries table
                 'desired_position' => ['required', 'string', 'max:255'],
             ])->validate();
 
-            Candidate::create([
+            $candidate = Candidate::create([
                 'user_id' => $user->id,
-                'industry' => $input['industry'],
                 'position' => $input['desired_position'],
             ]);
+
+            // Add industries to the registered candidate manually!!!!
+            for ($i = 0; $i < count($input['industries']); $i++) {
+                DB::table('candidate_industry')->insert([
+                    'candidate_id' => $candidate->user_id,
+                    'industry_id' => $input['industries'][$i],
+                ]);
+            }
         } elseif ($input['user_type'] === 'employer') {
             Validator::make($input, [
                 'company_name' => ['required', 'string', 'max:255'],

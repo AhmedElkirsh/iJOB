@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('candidates', function (Blueprint $table) {
-            $table->foreignId('user_id')->primary()->constrained('users')->onDelete('cascade');
-            $table->string('position');
-            // profile data that won't be asked while registering, so it's nullable;
-            // goes here 
+        Schema::create('industries', function (Blueprint $table) {
+            $table->id();
+            $table->string('industry_name');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('candidates');
+        Schema::dropIfExists('industries');
     }
 };

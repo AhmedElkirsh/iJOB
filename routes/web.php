@@ -31,3 +31,6 @@ Route::get('resumes/{id}', [ResumeController::class, 'show'])->name('resumes.sho
 // for me
 Route::resource('jobs',JobController::class);
 Route::resource('applications',applicationController::class);
+//this is a custom route for calling the custom registartion route (to send the industries)
+use App\Http\Controllers\Auth\CustomAuthController;
+Route::get('/register', [CustomAuthController::class, 'showRegistrationForm'])->name('register');

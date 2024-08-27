@@ -38,15 +38,17 @@
                     <label for="employer" class="ml-2">Employer</label>
                 </div>
             </div>
-
             <!-- Candidate Fields -->
             <div id="candidateFields" class="mt-4">
                 <x-label for="desired_position">Desired Position:</x-label>
                 <x-input id="desired_position" class="block mt-1 w-full" type="text" name="desired_position" />
-
                 <div class="mt-4">
-                    <x-label for="industry">Industry:</x-label>
-                    <x-input id="industry" class="block mt-1 w-full" type="text" name="industry" />
+                    <x-label for="industries">Industries:</x-label>
+                    <select id="industries" name="industries[]" class="block mt-1 w-full" multiple>
+                        @foreach($industries as $industry)
+                        <option value="{{ $industry->id }}">{{ $industry->industry_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 
