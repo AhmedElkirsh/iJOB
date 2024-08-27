@@ -31,3 +31,6 @@ Route::get('resumes/{id}', [ResumeController::class, 'show'])->name('resumes.sho
 // for me
 Route::resource('jobs',JobController::class);
 Route::resource('applications',applicationController::class);
+Route::get('/jobs',function(){
+    notify()->success('Welcome to Laravel Notify ⚡️');
+});
