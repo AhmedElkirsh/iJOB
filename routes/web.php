@@ -13,9 +13,11 @@ use App\Models\PortfolioProject;
 use Laravel\Jetstream\Http\Controllers\Inertia\UserProfileController;
 
 Route::get('/', function () {
-    return view('home');
+    return view('homelogin');
 });
-
+// Route::get('/jobs', function () {
+//     return view('jobs');
+// });
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -80,7 +82,10 @@ use App\Http\Controllers\EmployerController;
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('employers', EmployerController::class);
 });
-
-
-
+Route::get('/trying',function(){
+    return view('EmployerDashboard');
+});
+Route::get('/candidates',function(){
+    return view('EmployerDashboard');
+});
 //after login change route of logged in user from here app\Providers\FortifyServiceProvider.php

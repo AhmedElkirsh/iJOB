@@ -8,7 +8,6 @@
     @vite(['resources/css/app.css', 'resources/js/priceSlider.js'])
 </head>
 <body class="relative mt-36 px-20 bg-gray-50">
-    <livewire:auth.navigation>
 
 
 

@@ -1,65 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Job details</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <style>
-        #social-links ul
-        {
-            text-align: center;
-        }
-        #social-links ul li
-        {
-            text-align: center;
-            display: inline-block;
-        }
+<!-- resources/views/jobs/details.blade.php -->
+@extends('layouts.app')
 
-        #social-links ul li a {
-            padding: 20px;
-            border-radius: 50%;
-            border: 1px solid black;
-            margin: 3px;
-            background-color: black
-        }
-    </style>
-</head>
-<body>
-    <table class="table">
-        <thead>
-          <tr>
-            <th class="bg-dark text-white">position title</th>
-            <th class="bg-dark text-white">employment type</th>
-            <th class="bg-dark text-white">experience level</th>
-            <th class="bg-dark text-white">industry</th>
-            <th class="bg-dark text-white">job description</th>
-            <th class="bg-dark text-white">location</th>
-            <th class="bg-dark text-white">job status</th>
-            <th class="bg-dark text-white">salary</th>
-            <th class="bg-dark text-white">Action</th>
-          </tr>
+@section('content')
+<div class="max-w-7xl mx-auto py-12 px-4">
+    <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+        <thead class="bg-gray-800 text-white">
+            <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Position Title</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Employment Type</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Experience Level</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Industry</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Job Description</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Location</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Job Status</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Salary</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
+            </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th>{{$job->position_title}}</th>
-            <td>{{$job->employment_type}}</td>
-            <td>{{$job->experience_level}}</td>
-            <td>{{$job->industry}}</td>
-            <td>{{$job->job_description}}</td>
-            <td>{{$job->location}}</td>
-            <td>{{$job->job_status}}</td>
-            <td>{{$job->salary}}</td>
-            <td>
-                <a href="/jobs"><button class="btn btn-info">Back</button></a>
-            </td>
-          </tr>
+        <tbody class="bg-white divide-y divide-gray-200">
+            <tr>
+                <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ $job->position_title }}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">{{ $job->employment_type }}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">{{ $job->experience_level }}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">{{ $job->industry }}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">{{ $job->job_description }}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">{{ $job->location }}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">{{ $job->job_status }}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">{{ $job->salary }}</td>
+                <td class="px-6 py-4 text-sm font-medium">
+                    <a href="/jobs" class="inline-flex items-center px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600">
+                        Back
+                    </a>
+                </td>
+            </tr>
         </tbody>
     </table>
+    <div id="social-links" class="mt-6">
         {!! $shareButtons !!}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"></script>
-</body>
-</html>
+    </div>
+</div>
+@endsection

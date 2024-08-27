@@ -1,243 +1,125 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add New Job</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-<body>
-    <h1 class="text-center">New Job</h1>
-    <form class="m-auto w-50 border p-5" action="/jobs" method="POST">
-        @csrf
-        <div class="mb-3">
-            <label for="postionTitle" class="form-label">Postion Title</label>
-            <input type="text" class="form-control" id="postionTitle" placeholder="Postion Title" name="position_title">
-        </div>
-        @error('position_title')
-            <p class="alert alert-danger">{{$message}}</p>
-        @enderror
-        <!--------------------------------------------------------------------->
-        <div class="mb-3">
-            <label class="form-label">Employement Type</label>
-            <div>
-                <input type="radio" name="employment_type" value="full-time">
-                <label>full time</label>
+@extends('layouts.app')
+
+@section('content')
+    <div class="max-w-2xl mx-auto py-12 px-4">
+        <h1 class="text-3xl font-bold text-center mb-6">Create Job</h1>
+        <form class="bg-white shadow-md rounded-lg p-8" action="/jobs" method="POST">
+            @csrf
+
+            <!-- Hidden Input for Session ID -->
+            <input type="hidden" name="employer_id" value="{{ Auth::id() }}">
+
+            <div class="mb-6">
+                <label for="positionTitle" class="block text-gray-700 text-sm font-bold mb-2">Position Title</label>
+                <input type="text" class="form-input w-full border rounded-lg p-2" id="positionTitle" placeholder="Position Title" name="position_title">
+                @error('position_title')
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
             </div>
-            <div>
-                <input type="radio" name="employment_type" value="part-time">
-                <label>part-time</label>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Employment Type</label>
+                <div class="space-y-2">
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="employment_type" value="fullTime" class="form-radio text-indigo-600">
+                        <span class="ml-2">Full Time</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="employment_type" value="partTime" class="form-radio text-indigo-600">
+                        <span class="ml-2">Part-Time</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="employment_type" value="contract" class="form-radio text-indigo-600">
+                        <span class="ml-2">Contract</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="employment_type" value="freelance" class="form-radio text-indigo-600">
+                        <span class="ml-2">Freelance</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="employment_type" value="internship" class="form-radio text-indigo-600">
+                        <span class="ml-2">Internship</span>
+                    </label>
+                </div>
+                @error('employment_type')
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
             </div>
-            <div>
-                <input type="radio" name="employment_type" value="contract">
-                <label>contract</label>
+
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Experience Level</label>
+                <div class="space-y-2">
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="experience_level" value="junior" class="form-radio text-indigo-600">
+                        <span class="ml-2">Junior</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="experience_level" value="senior" class="form-radio text-indigo-600">
+                        <span class="ml-2">Senior</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="experience_level" value="expert" class="form-radio text-indigo-600">
+                        <span class="ml-2">Expert</span>
+                    </label>
+                </div>
+                @error('experience_level')
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
             </div>
-            <div>
-                <input type="radio" name="employment_type" value="freelance">
-                <label>freelance</label>
+
+            <div class="mb-6">
+                <label for="industry" class="block text-gray-700 text-sm font-bold mb-2">Industry</label>
+                <input type="text" class="form-input w-full border rounded-lg p-2" id="industry" placeholder="Industry" name="industry">
+                @error('industry')
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
             </div>
-            <div>
-                <input type="radio" name="employment_type" value="internship">
-                <label>internship</label>
+
+            <div class="mb-6">
+                <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Job Description</label>
+                <input type="text" class="form-input w-full border rounded-lg p-2" id="description" placeholder="Job Description" name="job_description">
+                @error('job_description')
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
             </div>
-        </div>
-        @error('employment_type')
-            <p class="alert alert-danger">{{$message}}</p>
-        @enderror
-        <!--------------------------------------------------------------------->
-        <div class="mb-3">
-            <label class="form-label">Experience Level</label>
-            <div>
-                <input type="radio" name="experience_level" value="junior">
-                <label>Junior</label>
+
+            <div class="mb-6">
+                <label for="location" class="block text-gray-700 text-sm font-bold mb-2">Location</label>
+                <input type="text" class="form-input w-full border rounded-lg p-2" id="location" placeholder="Location" name="location">
+                @error('location')
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
             </div>
-            <div>
-                <input type="radio" name="experience_level" value="senior">
-                <label>Senior</label>
+
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Job Status</label>
+                <div class="space-y-2">
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="job_status" value="notApproved" class="form-radio text-indigo-600">
+                        <span class="ml-2">Not Approved</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="job_status" value="open" class="form-radio text-indigo-600">
+                        <span class="ml-2">Open</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="job_status" value="closed" class="form-radio text-indigo-600">
+                        <span class="ml-2">Closed</span>
+                    </label>
+                </div>
+                @error('job_status')
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
             </div>
-            <div>
-                <input type="radio" name="experience_level" value="expert">
-                <label>Expert</label>
+
+            <div class="mb-6">
+                <label for="salary" class="block text-gray-700 text-sm font-bold mb-2">Salary</label>
+                <input type="number" class="form-input w-full border rounded-lg p-2" id="salary" placeholder="Salary" name="salary">
+                @error('salary')
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
             </div>
-        </div>
-        @error('experience_level')
-            <p class="alert alert-danger">{{$message}}</p>
-        @enderror
-        <!--------------------------------------------------------------------->
-        <div class="mb-3">
-            <label for="industry" class="form-label">Industry</label>
-            <input type="text" class="form-control" id="industry" placeholder="Industry" name="industry">
-        </div>
-        @error('industry')
-             <p class="alert alert-danger">{{$message}}</p>
-         @enderror
-        <!--------------------------------------------------------------------->
-        <div class="mb-3">
-            <label for="description" class="form-label">Job Description</label>
-            <input type="text" class="form-control" id="description" placeholder="description" name="job_description">
-        </div>
-        @error('job_description')
-            <p class="alert alert-danger">{{$message}}</p>
-        @enderror
-        <!--------------------------------------------------------------------->
-        <div class="mb-3">
-            <label for="responsibilities" class="form-label">Responsibilities</label>
-            <div id="responsibility-fields">
-                <input type="text" class="form-control" name="responsibilities[]" placeholder="Enter responsibility">
-            </div>
-            <button type="button" onclick="addResponsibilityField()">Add Another Responsibility</button>
-        </div>
-        @error('responsibilities')
-            <p class="alert alert-danger">{{$message}}</p>
-        @enderror
-        <!--------------------------------------------------------------------->
-        <div class="mb-3">
-            <label for="qualifications" class="form-label">qualifications</label>
-            <input type="text" class="form-control" id="qualifications" placeholder="qualifications" name="qualification">
-        </div>
-        @error('qualification')
-            <p class="alert alert-danger">{{$message}}</p>
-        @enderror
-        <!--------------------------------------------------------------------->
-        <select id="skillsSelect" name="required_skills">
-            <option value="">Select required skill</option>
-            <!-- Example options; replace these with dynamic data from your database -->
-            <option value="1">JavaScript</option>
-            <option value="2">Python</option>
-            <option value="3">Java</option>
-            <option value="4">PHP</option>
-        </select>
 
-        <!-- Container for displaying selected tags -->
-        <div id="tagsContainer" class="flex flex-wrap gap-2 mt-2">
-            <!-- Tags will be dynamically added here -->
-        </div>
-
-        <!-- Hidden input to store selected skill IDs -->
-        <div id="tagsContainer" class="flex flex-wrap gap-2 mt-2"></div>
-
-        <input type="hidden" id="skillsInput" name="required_skills">
-        <!--------------------------------------------------------------------->
-        <div class="mb-3">
-            <label for="location" class="form-label">Location</label>
-            <input type="text" class="form-control" id="location" placeholder="location" name="location">
-        </div>
-        @error('location')
-             <p class="alert alert-danger">{{$message}}</p>
-        @enderror
-        <!--------------------------------------------------------------------->
-        <div class="mb-3">
-            <label for="jobStatus" class="form-label">job Status</label>
-            <div>
-                <input type="radio" name="job_status" value="notAproved">
-                <label>not Aproved</label>
-            </div>
-            <div>
-                <input type="radio" name="job_status" value="open">
-                <label>open</label>
-            </div>
-            <div>
-                <input type="radio" name="job_status" value="closed">
-                <label>closed</label>
-            </div>
-        </div>
-        @error('job_status')
-             <p class="alert alert-danger">{{$message}}</p>
-        @enderror
-        <!--------------------------------------------------------------------->
-        <div class="mb-3">
-            <label for="salary" class="form-label">Salary</label>
-            <input type="number" class="form-control" id="salary" placeholder="salary" name="salary">
-        </div>
-        <input type="hidden" name="employer_id" value="{{ Auth::id() }}">
-        <button type="submit" class="btn btn-success">Add</button>
-    </form>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-        const select = document.getElementById("skillsSelect");
-        const tagsContainer = document.getElementById("tagsContainer");
-        const skillsInput = document.getElementById("skillsInput");
-
-        select.addEventListener("change", function () {
-            const selectedValue = this.value;
-            const selectedText = this.options[this.selectedIndex].text;
-
-            // Check if the tag already exists
-            if (selectedValue && !tagsContainer.querySelector(`.tag[data-id='${selectedValue}']`)) {
-                // Create a tag container
-                const tag = document.createElement("div");
-                tag.className = "tag flex items-center bg-gray-200 rounded px-2 py-1";
-                tag.dataset.id = selectedValue;
-
-                // Create the tag text
-                const tagText = document.createElement("span");
-                tagText.textContent = selectedText;
-
-                // Create the remove button with Heroicon
-                const removeButton = document.createElement("button");
-                removeButton.className = "remove-tag ml-2 text-red-500";
-                removeButton.setAttribute("aria-label", `Remove ${selectedText}`);
-                removeButton.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M6.707 4.293a1 1 0 00-1.414 1.414L8.586 10l-3.293 3.293a1 1 0 101.414 1.414L10 11.414l3.293 3.293a1 1 0 001.414-1.414L11.414 10l3.293-3.293a1 1 0 00-1.414-1.414L10 8.586 6.707 4.293z" clip-rule="evenodd" />
-                    </svg>
-                `;
-
-                // Add event listener to remove the tag
-                removeButton.addEventListener("click", () => {
-                    tagsContainer.removeChild(tag);
-                    updateHiddenInput();
-                });
-
-                // Append text and button to the tag container
-                tag.appendChild(tagText);
-                tag.appendChild(removeButton);
-                tagsContainer.appendChild(tag);
-
-                // Reset the select input
-                select.value = "";
-
-                // Update hidden input with selected IDs
-                updateHiddenInput();
-            }
-        });
-
-        function updateHiddenInput() {
-            const tags = tagsContainer.querySelectorAll(".tag");
-            const ids = Array.from(tags)
-                .map((tag) => tag.dataset.id) // Directly use dataset.id for efficiency
-                .filter((id) => id); // Ensure no empty values
-
-            skillsInput.value = ids.join(",");
-            console.log(skillsInput.value); // Log to see the result
-        }
-    });
-    </script>
-<script>
-    function addResponsibilityField() {
-        const container = document.getElementById('responsibility-fields');
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.className = 'form-control';
-        input.name = 'responsibilities[]'; // This must be an array
-        input.placeholder = 'Enter another responsibility';
-        container.appendChild(input);
-    }
-</script>
-    </body>
-</html>
-{{-- <label for="responsibilitiesInput" class="form-label">Responsibilities</label>
-<input type="text" class="form-control" id="responsibilitiesInput" placeholder="responsibilities" name="responsibility">
-
- <!-- Container for displaying selected tags -->
- <div id="tagsContainer" class="flex flex-wrap gap-2 mt-2">
-     <!-- Tags will be dynamically added here -->
- </div>
-
- <!-- Hidden input to store selected skill IDs -->
- <div id="tagsContainer" class="flex flex-wrap gap-2 mt-2"></div>
-
- <input type="hidden" id="responsibilitiesHidden" name="responsibilities">
-</form> --}}
+            <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg">Create Job</button>
+        </form>
+    </div>
+@endsection

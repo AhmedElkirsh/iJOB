@@ -148,7 +148,6 @@ class JobController extends Controller
      */
     public function update(UpdateJobRequest $request,Job $job)
     {
-        dd($request);
         $jobData = [
             'position_title' => $request['position_title'],
             'employment_type' => $request['employment_type'],
