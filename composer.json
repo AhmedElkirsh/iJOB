@@ -12,8 +12,12 @@
         "laravel/jetstream": "^5.1",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
+<<<<<<< HEAD
         "livewire/livewire": "^3.0",
         "mckenziearts/laravel-notify": "^2.5",
+=======
+        "livewire/livewire": "^3.5",
+>>>>>>> 69c1e50 (Candidates)
         "smalot/pdfparser": "^2.11"
     },
     "require-dev": {

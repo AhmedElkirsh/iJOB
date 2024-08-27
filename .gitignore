@@ -18,3 +18,107 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+livewire
+<div>
+    <form wire:submit.prevent="search">
+        <input type="text" wire:model="position_title" placeholder="Position Title">
+        <input type="text" wire:model="employment_type" placeholder="Employment Type">
+        <input type="text" wire:model="experience_level" placeholder="Experience Level">
+        <input type="text" wire:model="industry" placeholder="Industry">
+        <input type="text" wire:model="location" placeholder="Location">
+        <button type="submit">Search</button>
+    </form>
+
+    <ul>
+        @foreach ($jobs as $job)
+            <li>{{ $job->position_title }} - {{ $job->employment_type }} - {{ $job->experience_level }} - {{ $job->location }} - ${{ $job->salary }}</li>
+        @endforeach
+    </ul>
+</div>
+
+view
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <h1>Job Search</h1>
+        @livewire('search')
+    </div>
+@endsection
+
+controller
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\Models\JobListing;
+
+class JobSearchController extends Controller
+{
+
+    public function index()
+    {
+        return view('job-search');
+    }
+
+    public function search(Request $request)
+    {
+        $query = JobListing::query();
+
+        // Apply filters based on the provided request parameters
+        if ($request->has('position_title')) {
+            $query->where('position_title', 'like', '%' . $request->position_title . '%');
+        }
+
+        if ($request->has('employment_type')) {
+            $query->where('employment_type', $request->employment_type);
+        }
+
+        if ($request->has('experience_level')) {
+            $query->where('experience_level', $request->experience_level);
+        }
+
+        if ($request->has('industry')) {
+            $query->where('industry', 'like', '%' . $request->industry . '%');
+        }
+
+        if ($request->has('location')) {
+            $query->where('location', 'like', '%' . $request->location . '%');
+        }
+
+        // Ensure we only return open jobs
+        $jobs = $query->where('job_status', 'open')->get();
+
+        return view('job-search', ['jobs' => $jobs]);
+    }
+}
+
+models
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class JobListing extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'employer_id',
+        'position_title',
+        'employment_type',
+        'experience_level',
+        'industry',
+        'job_description',
+        'location',
+        'job_status',
+        'salary',
+    ];
+
+    // Additional relationships and methods can be added here.
+}

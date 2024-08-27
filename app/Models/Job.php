@@ -8,7 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
     use HasFactory;
+<<<<<<< HEAD
     protected $table='job_listings';
+=======
+
+    // Specify the table name if it differs from the model name
+    protected $table = 'job_listings';
+
+>>>>>>> 69c1e50 (Candidates)
     protected $fillable = [
         'employer_id',
         'position_title',
@@ -18,6 +25,7 @@ class Job extends Model
         'job_description',
         'location',
         'job_status',
+<<<<<<< HEAD
         'salary'
     ];
     public function employer()
@@ -32,5 +40,12 @@ class Job extends Model
     public function qualifications()
     {
         return $this->hasMany(Qualification::class,'job_id');
+=======
+        'salary',
+    ];
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class, 'required_skills');
+>>>>>>> 69c1e50 (Candidates)
     }
 }

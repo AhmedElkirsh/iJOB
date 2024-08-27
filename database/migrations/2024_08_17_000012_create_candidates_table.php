@@ -6,23 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->foreignId('user_id')->primary()->constrained('users')->onDelete('cascade');
             $table->string('position');
-            // profile data that won't be asked while registering, so it's nullable;
-            // goes here 
+            $table->enum('experience_level', ['Entry', 'Intermediate', 'Advanced'])->nullable();
+            $table->string('location')->nullable();
+            $table->integer('rate_salary')->nullable();
+            $table->string('education_level')->nullable();
+            $table->string('certifications')->nullable();
+            $table->string('languages')->nullable();
+            $table->text('bio')->nullable();
+
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('candidates');
