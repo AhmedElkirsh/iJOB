@@ -12,8 +12,10 @@ use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
 use Illuminate\Support\Facades\DB;
 
+
 class CreateNewUser implements CreatesNewUsers
 {
+    
     use PasswordValidationRules;
 
     /**
@@ -24,22 +26,21 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): User
     {
 
+
         // Validate common fields
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-            'user_type' => ['required', 'in:candidate,employer'],
         ])->validate();
-
         // Create the User
         $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'user_type' => $input['user_type']
         ]);
-
         // Based on user type, create either a Candidate or an Employer
         if ($input['user_type'] === 'candidate') {
             Validator::make($input, [

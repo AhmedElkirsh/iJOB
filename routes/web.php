@@ -37,14 +37,12 @@ Route::post('/upload-resume', [ResumeController::class, 'upload']);
 Route::get('/resumes', [ResumeController::class, 'index']);
 // routes/web.php
 Route::get('resumes/{id}', [ResumeController::class, 'show'])->name('resumes.show');
-<<<<<<< HEAD
 // for me
 Route::resource('jobs',JobController::class);
 Route::resource('applications',applicationController::class);
-//this is a custom route for calling the custom registartion route (to send the industries)
+//this is a custom route for calling the custom registartion route (to send the industries of cadidates)
 use App\Http\Controllers\Auth\CustomAuthController;
 Route::get('/register', [CustomAuthController::class, 'showRegistrationForm'])->name('register');
-=======
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/job-search', [JobSearchController::class, 'index'])->name('job.search');
@@ -59,4 +57,7 @@ Route::put('/profile/update', [ProfileController::class, 'update'])->name('profi
 
 Route::get('/portifolio', [PortifolioController::class, 'index'])->name('portfolio.index');
 Route::post('/portifolio', [PortifolioController::class, 'store'])->name('portfolio.store');
->>>>>>> 69c1e50 (Candidates)
+//these are the routes for admin
+use App\Http\Controllers\Admin\AdminController;
+Route::get('/admin/create', [AdminController::class, 'showCreateForm'])->name('admin.create');
+Route::post('/admin/create', [AdminController::class, 'create'])->name('admin.store');
