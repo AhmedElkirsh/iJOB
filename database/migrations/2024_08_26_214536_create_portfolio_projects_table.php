@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('portfolio_projects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('candidate_id')->constrained('candidates')->onDelete('cascade');
+            $table->foreignId('candidate_id')->constrained('candidates','user_id')->onDelete('cascade');
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('file_path');

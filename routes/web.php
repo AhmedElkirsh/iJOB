@@ -57,7 +57,30 @@ Route::put('/profile/update', [ProfileController::class, 'update'])->name('profi
 
 Route::get('/portifolio', [PortifolioController::class, 'index'])->name('portfolio.index');
 Route::post('/portifolio', [PortifolioController::class, 'store'])->name('portfolio.store');
+
+
 //these are the routes for admin
-use App\Http\Controllers\Admin\AdminController;
-Route::get('/admin/create', [AdminController::class, 'showCreateForm'])->name('admin.create');
-Route::post('/admin/create', [AdminController::class, 'create'])->name('admin.store');
+use App\Http\Controllers\Admin\AdminAccountController;
+use Illuminate\Support\Facades\Auth;
+// create account
+Route::get('/admin/create', [AdminAccountController::class, 'showCreateForm'])->name('admin.create');
+Route::post('/admin/create', [AdminAccountController::class, 'create'])->name('admin.store');
+// Route to show the admin login form
+Route::get('/admin/login', [AdminAccountController::class, 'showLoginForm'])->name('admin.login.form');
+Route::post('/admin/login', [AdminAccountController::class, 'login'])->name('admin.login.submit');
+// Route to admin dashboard after login
+Route::view('/admin/dashboard', 'admin.dashboard')->name('admin.dashboard')->middleware('auth');
+//Route to logout admin
+Route::post('/admin/logout', function () {
+    Auth::logout();
+    return redirect('/admin/login');})
+    ->name('admin.logout');
+//route for admin over employers
+use App\Http\Controllers\EmployerController;
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('employers', EmployerController::class);
+});
+
+
+
+//after login change route of logged in user from here app\Providers\FortifyServiceProvider.php

@@ -8,11 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Skill extends Model
 {
     use HasFactory;
-<<<<<<< HEAD
-    protected $fellible=[
-        'skill'
-    ];
-=======
 
     protected $fillable = ['skill'];
 
@@ -24,5 +19,4 @@ class Skill extends Model
     {
         return $this->belongsToMany(Candidate::class, 'candidate_skills', 'skill_id', 'candidate_id');
     }
->>>>>>> 69c1e50 (Candidates)
 }

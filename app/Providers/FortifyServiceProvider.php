@@ -49,11 +49,11 @@ class FortifyServiceProvider extends ServiceProvider
                 $user = Auth::user();
                 switch ($user->user_type) {
                     case 'admin':
-                        return Redirect::route('admin.index');
+                        return Redirect::route('admin.dashboard');
                     case 'candidate':
-                        return Redirect::route('candidate.index');
+                        return Redirect::route('candidate.dashboard');
                     case 'employer':
-                        return Redirect::route('employer.index');
+                        return Redirect::route('employer.dashboard');
                     default:
                         return Redirect::to('/');
                 }

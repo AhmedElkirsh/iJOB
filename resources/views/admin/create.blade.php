@@ -10,8 +10,8 @@
 </head>
 
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
-        <h1 class="text-2xl font-semibold mb-6 text-center">Create Admin</h1>
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
+        <h1 class="text-2xl font-semibold mb-4 text-center">Create Admin</h1>
 
         @if (session('success'))
         <div class="bg-green-100 border border-green-300 text-green-700 px-4 py-3 rounded relative mb-6" role="alert">
@@ -36,22 +36,31 @@
             @csrf
             <div class="mb-4">
                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                <input type="text" id="name" name="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" value="{{ old('name') }}" required>
+                <input type="text" id="name" name="name" class="px-4 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" value="{{ old('name') }}" required>
             </div>
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" id="email" name="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" value="{{ old('email') }}" required>
+                <input type="email" id="email" name="email" class="px-4 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" value="{{ old('email') }}" required>
             </div>
             <div class="mb-4">
                 <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                <input type="password" id="password" name="password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" required>
+                <input type="password" id="password" name="password" class="px-4 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" required>
             </div>
             <div class="mb-6">
                 <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-                <input type="password" id="password_confirmation" name="password_confirmation" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" required>
+                <input type="password" id="password_confirmation" name="password_confirmation" class="px-4 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" required>
+            </div>
+            <div class="mb-4">
+                <label for="permissions" class="block text-sm font-medium text-gray-700">Permissions</label>
+                <input type="text" id="permissions" name="permissions" class="px-4 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" value="{{ old('permissions') }}">
+                <p class="mt-2 text-sm text-gray-500">Enter permissions as a comma-separated list.</p>
             </div>
             <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create Admin</button>
         </form>
+
+        <p class="mt-4 text-center text-sm text-gray-600">
+            Already have an account? <a href="{{ route('admin.login.form') }}" class="text-indigo-600 hover:text-indigo-800 font-medium">Login here</a>
+        </p>
     </div>
 </body>
 

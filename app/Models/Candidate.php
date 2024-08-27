@@ -2,22 +2,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Candidate extends Model
 {
-<<<<<<< HEAD
     use HasFactory;
-
-    protected $fillable = [
-        'user_id',
-        'position',
-        // Other fields...
-    ];
-
-    public function industries()
-    {
-        return $this->belongsToMany(Industry::class, 'candidate_industry', 'user_id', 'industry_id');
-=======
     // Set the table name if it's not following Laravel's convention
     protected $table = 'candidates';
 
@@ -53,6 +41,5 @@ class Candidate extends Model
     public function skills()
     {
         return $this->belongsToMany(Skill::class, 'candidate_skills', 'candidate_id', 'skill_id');
->>>>>>> 69c1e50 (Candidates)
     }
 }
