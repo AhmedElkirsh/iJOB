@@ -13,7 +13,7 @@ use App\Models\PortfolioProject;
 use Laravel\Jetstream\Http\Controllers\Inertia\UserProfileController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::middleware([

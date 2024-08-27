@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Job extends Model
 {
+    protected $table = "job_listings";
     use HasFactory;
 
     // Specify the table name if it differs from the model name
-    protected $table = 'job_listings';
 
     protected $fillable = [
         'employer_id',
